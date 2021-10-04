@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
-using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
@@ -10,7 +9,6 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
 using FluentValidation;
@@ -38,7 +36,6 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
 
-            //Aynı isimde ürün eklenemez
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName));
 
             if (result != null)
